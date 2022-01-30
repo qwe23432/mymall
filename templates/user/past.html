@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{% url 'homepage' 1 %}">主页</a>    <a href="{% url 'wd'%}">我的</a>    <a href="{% url 'logout' %}">退出</a>    <a href="{% url 'order' %}">我的订单</a><br/>   <a href="{% url 'mycart' %}">我的购物车</a> <hr/><hr/>
+{% for s in list %}
+<img src="/static/staff/{{s.staff.pictere}}" width="100"><br/>
+<a href="{% url 'staff' s.id%}">{{s.staff.name}}</a>
+价格{{s.staff.price}}元<br/>
+浏览时间{{s.time}}<br/><hr/>
+{% endfor %}
+</body>
+</html>

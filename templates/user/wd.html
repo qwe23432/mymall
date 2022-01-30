@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{% url 'homepage' 1 %}">主页</a>    <a href="{% url 'logout' %}">退出</a><br/>
+<a href="{% url 'past' %}">点击查看历史</a> <a href="{% url 'myorder' %}">历史订单</a><br/>
+<a href="/static/picture/{{u.picture}}"><img src="/static/picture/{{u.picture}}" alt="头像" width="70"></a><br/>
+昵称：{{u.nickname}}<br/>
+用户名:{{u.username}}
+<form action="{%url 'nickname' %}" method="POST">
+    {% csrf_token %}
+    更改昵称<input type="text" name="nickname" minlength="3" maxlength="15" >
+    <input type="submit" value="提交">
+</form>
+<h4>头像上传</h4>
+<form action="{% url 'photo' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    头像：<input type="file" name="photo"/><br/>
+    <input type="submit" value="上传"/><br/>
+</form>
+我的钱:{{u.money}}<br/>
+我的地址：<br/>
+    {% for a in list %}
+    {{a.address}}<br/>
+    {% endfor %}
+<form action="{% url 'address_' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="address">
+    <input type="submit" value="添加地址">
+</form>
+<br/>
+<a href="{% url 'lost' %}">忘记密码   </a><a href="{% url 'change'%}">点击修改用户名和密码</a>
+<br/><a href="{% url 'rmb' %}">充钱</a>
+</body>
+</html>

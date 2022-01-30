@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{% url 'homepages'%}">主页</a>     <a href="{% url 'wds' %}">我的</a>    <a href="{% url 'logouts' %}">退出</a><br/>
+<form action="{% url 'create' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    店铺名称：<input type="text" name="name" minlength="3" maxlength="15" >
+    店铺图片：<input type="file" name="photo"/><br/>
+    <input type="submit" value="上传"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+</head>
+<body>
+<h2>我的店铺</h2><br/>
+<a href="{% url 'wds' %}">我的</a>    <a href="{% url 'logouts' %}">退出</a>    <a href="{% url 'reply' %}">商品消息(新消息:{{n}})</a>
+<a href="{% url 'sells'%}">订单消息(新消息:{{m}})</a><br/>
+{% for s in slist %}
+<img src="/static/store/{{s.picture}}" width="100"><br/><a href="{% url 'manage' s.id %}">{{s.name}}</a><br/>
+{% endfor %}
+<br/><hr/><hr/><br/>
+<a href="{% url 'create' %}">点击创建店铺</a>
+</body>
+</html>

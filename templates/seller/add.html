@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/ueditor/UE/third-party/SyntaxHighlighter/shCoreDefault.css">
+    <script type="text/javascript" src="/ueditor/UE/third-party/SyntaxHighlighter/shCore.js"></script>
+    <script type="text/javascript" src="/ueditor/UE/ueditor.config.js"></script>
+    <script type="text/javascript" src="/ueditor/UE/ueditor.all.min.js"></script>
+    <script type="text/javascript" src="/ueditor/UE/lang/zh-cn/zh-cn.js"></script>
+</head>
+<body>
+<a href="{% url 'homepages'%}">主页</a>     <a href="{% url 'wds' %}">我的</a>    <a href="{% url 'logouts' %}">退出</a><br/>
+<form action="{% url 'doadd' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="storeid" value="{{id}}">
+    商品图片：<input type="file" name="photo"><br/>
+    商品名称：<input type="text" name="name"><br/>
+    价格：<input type="text" name="price"><br/>
+    数量：<input type="text" name="number"><br/>
+    商品类型：
+    <input type="radio" name="type" value="1">饮食    <input type="radio" name="type" value="2">家电    <input type="radio" name="type" value="3">数码
+    <input type="radio" name="type" value="4">清洁用品   <input type="radio" name="type" value="5">玩具<br/>
+    介绍：
+    <div class="am-form-group">
+        <label for="user-intro" class="am-u-sm-3 am-form-label">商品简介</label>
+        <div class="am-u-sm-9">
+            <script id="editor" name="message" type="text/plain" style="height:250px;width:800px;"></script>
+        </div>
+    </div>
+    <input type="submit" value="添加">
+</form>
+    <script type="text/javascript">
+        var ue = UE.getEditor('editor');
+        SyntaxHighlighter.all();
+    </script>
+</body>
+</html>

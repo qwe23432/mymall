@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/ueditor/UE/third-party/SyntaxHighlighter/shCoreDefault.css">
+    <script type="text/javascript" src="/ueditor/UE/third-party/SyntaxHighlighter/shCore.js"></script>
+    <script type="text/javascript" src="/ueditor/UE/ueditor.config.js"></script>
+    <script type="text/javascript" src="/ueditor/UE/ueditor.all.min.js"></script>
+    <script type="text/javascript" src="/ueditor/UE/lang/zh-cn/zh-cn.js"></script>
+</head>
+<body>
+<a href="{% url 'homepages'%}">主页</a>     <a href="{% url 'wds' %}">我的</a>    <a href="{% url 'logouts' %}">退出</a><br/>
+<form method="post" action="{% url 'doedit' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    商品图片：<img src="/static/staff/{{s.pictere}}" width="100"><br/>
+    <input type="file" name="photo"><br/>
+    商品名称：<input type="text" value="{{s.name}}" name="name">
+    商品价格：<input type="text" value="{{s.price}}" name="price">
+    商品数目：<input type="text" value="{{s.number}}" name="number"><br/>
+    <input type="hidden" value="{{s.id}}" name="s">
+    商品简介:{{ message|safe}}<br/>
+    更改商品简介：
+    <div class="am-form-group">
+        <label for="user-intro" class="am-u-sm-3 am-form-label"></label>
+        <div class="am-u-sm-9">
+           <script id="editor" name="message" type="text/plain" style="height:250px;width:800px;"></script>
+        </div>
+    </div>
+    <input type="submit" value="提交">
+</form>
+    <script type="text/javascript">
+        var ue = UE.getEditor('editor');
+        SyntaxHighlighter.all();
+    </script>
+</body>
+</html>

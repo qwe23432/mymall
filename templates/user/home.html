@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{% url 'login' %}">登录</a>   <a href="{% url 'register' %}">注册</a><br/><hr/><hr/><br/>
+{% for s in list %}
+<img src="/static/staff/{{s.pictere}}" width="100"><br/>
+<a href="{% url 'staff' s.id%}">{{s.name}}</a>价格{{s.price}}元<br/><hr/>
+{% endfor %}
+<a href="{%url 'homepage' home|add:-1 %} ">上一页</a>
+        {% for p in pagelist %}
+        {% if home == p %}
+                <a href="{% url 'homepage' p %}" style="color:red;" >{{p}}</a>
+        {%else%}
+                <a href="{% url 'homepage' p  %}">{{p}}</a>
+        {%endif%}
+        {%endfor%}
+        <a href="{%url 'homepage' home|add:1  %}">下一页</a>
+        <br/><div>当前为第{{home}}页</div>
+</body>
+</html>

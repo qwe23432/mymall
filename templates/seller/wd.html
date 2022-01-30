@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{% url 'homepages'%}">主页</a>    <a href="{% url 'logouts' %}">退出</a><br/>
+<a href="/static/picture/{{s.picture}}"><img src="/static/picture/{{s.picture}}" alt="头像" width="70"></a><br/>
+昵称：{{s.nickname}}<br/>
+用户名:{{s.username}}<br/>
+我的钱:{{s.money}}
+<form action="{%url 'nicknames' %}" method="POST">
+    {% csrf_token %}
+    更改昵称<input type="text" name="nickname" minlength="3" maxlength="15" >
+    <input type="submit" value="提交">
+</form>
+<h4>头像上传</h4>
+<form action="{% url 'photos' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    头像：<input type="file" name="photo"/><br/>
+    <input type="submit" value="上传"/>
+</form>
+<br/>
+</a><a href="{% url 'losts' %}">忘记密码   </a><a href="{% url 'changes'%}">点击修改用户名和密码</a>
+</body>
+</html>

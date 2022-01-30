@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{% url 'homepages'%}">主页</a>     <a href="{% url 'wds' %}">我的</a>    <a href="{% url 'logouts' %}">退出</a><br/><br/><hr/><hr/>
+{% for e in elist %}
+<div>{{e.username}}评价{{e.store}}的{{e.name}}:  {{e.expression}}</div><br/>{{e.addtime}}
+{% if e.status == 1 %}
+<div>已回复</div>
+{% else %}
+<form action="{% url 'reply' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" value="{{e.id}}" name="eid">
+    <input type="submit" value="回复">
+</form>
+{% endif %}
+<hr/>
+{% endfor %}
+</body>
+</html>

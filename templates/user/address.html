@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{% url 'homepage' 1 %}">主页</a>   <br/><hr/>
+<form method="post" action="{% url 'buy' sid %}">
+    {% csrf_token %}
+    {% for a in list %}
+    <input type="radio" name="address" value="{{a.address}}">{{a.address}}<br/>
+    {% endfor %}
+    {% if list %}
+    购买数量：<input type="number" name="buy_number" value="{{buy_number}}" minlength="1">
+    <input type="submit" value="确认购买">
+    {% endif %}
+</form>
+<a href="{% url 'address' sid %}">点击添加地址</a>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="{% url 'losts2' %}">
+  {% csrf_token %}
+  新密码：<input type="password" name="password" onkeyup="value=value.replace(/[\u4e00-\u9fa5]/ig,'')"><br/>
+  再次输入密码:<input type="password" name="repassword" onkeyup="value=value.replace(/[\u4e00-\u9fa5]/ig,'')"><br/>
+  验证码：<input type="text" name="pin"><input type="submit" value="获取验证码">
+  <input type="hidden" name="email" value="{{e}}">
+    <input type="hidden" name="username" value="{{u}}">
+</form>
+<form method="post" action="{% url 'error1s' %}">
+    {% csrf_token %}
+    <input type="submit" value="提交">{{error}}
+</form>
+</body>
+</html>

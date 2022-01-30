@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{% url 'homepage' 1 %}">主页</a>   <a href="{% url 'wd'%}">我的</a>    <a href="{% url 'logout' %}">退出</a>    <a href="{% url 'order' %}">我的订单</a><br/>    <hr/><hr/><br/>
+<center>
+    <h3>我的购物车</h3>
+        <table width="800" border="1">
+            <tr>
+                <th>商品图片</th>
+                <th>商品名</th>
+                <th>商品剩余数量</th>
+                <th>商品价格</th>
+                <th>店铺</th>
+                <th>购买数目</th>
+                <th>购买</th>
+            </tr>
+            {% for c in list %}
+                <tr>
+                    <td><img src="/static/staff/{{c.pictere}}" width="100"></td>
+                    <td><a href="{% url 'staff' c.staff %}">{{c.name}}</a></td>
+                    <td>{{c.number}}</td>
+                    <td>{{c.price}}</td>
+                    <td>{{c.store}}</td>
+                    <td>{{c.buy_number}}</td>
+                    <td>
+                    <a href="{% url 'buy' c.staff %}">购买</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+</center>
+</body>
+</html>

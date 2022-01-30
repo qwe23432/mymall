@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{% url 'homepages'%}">主页</a>     <a href="{% url 'wds' %}">我的</a>    <a href="{% url 'logouts' %}">退出</a><br/><br/><hr/>
+<form action="{% url 'doreply'%}" method="post">
+    {% csrf_token %}
+    <input type="hidden" value="{{eid}}" name="eid">
+    <textarea cols="100" rows="10" name="reply"></textarea><br/>
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>

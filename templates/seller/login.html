@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>登录</h1><br/>
+<form action="{% url 'logins' %}" method="post">
+    {% csrf_token %}
+    用户名：<input type="text" name="username" placeholder="数字/字母" minlength="3" maxlength="15" onkeyup="value=value.replace(/[\u4e00-\u9fa5]/ig,'')"><br/>
+    密码：  <input type="password" name="password" placeholder="数字/字母" minlength="3" maxlength="15" onkeyup="value=value.replace(/[\u4e00-\u9fa5]/ig,'')"><br/>
+    验证码： <input type="text" name="pins" placeholder="区分大小写" ><br/>
+    <a href="/static/pins/{{n}}" target="_blank"><img src="/static/pins/{{n}}"></a><a href="{% url 'logins' %}">看不清？换一张</a><br/>
+    <input type="hidden" value="{{pin}}" name="pin">
+    <input type="submit" value="提交">    <a href="{% url 'registers' %}">   注册   </a><a href="{% url 'losts' %}">忘记密码   </a>
+</form>
+</body>
+</html>

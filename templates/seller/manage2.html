@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{% url 'homepages'%}">主页</a>     <a href="{% url 'wds' %}">我的</a>    <a href="{% url 'logouts' %}">退出</a><br/>
+<form method="post" action="{%url 'add'%}">
+    {% csrf_token %}
+    <input type="hidden" value="{{storeid}}" name="storeid">
+    <input type="submit" value="点击添加商品">
+</form>
+</body>
+</html>

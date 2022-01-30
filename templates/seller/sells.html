@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{% url 'homepages'%}">主页</a>     <a href="{% url 'wds' %}">我的</a>    <a href="{% url 'logouts' %}">退出</a><br/>
+<center>
+    <h3>订单</h3>
+        <table width="1000" border="1">
+            <tr>
+                <th>商品图片</th>
+                <th>商品名</th>
+                <th>商品剩余数量</th>
+                <th>商品价格</th>
+                <th>购买数目</th>
+                <th>地址</th>
+                <th>店铺</th>
+                <th>客户昵称</th>
+                <th>状态</th>
+                <th>订单状态改变时间</th>
+            </tr>
+            {% for o in olist %}
+                <tr>
+                    <td><img src="/static/staff/{{o.pictere}}" width="100"></td>
+                    <td>{{o.name}}</td>
+                    <td>{{o.number}}</td>
+                    <td>{{o.price}}</td>
+                    <td>{{o.buy_number}}</td>
+                    <td>{{o.address}}</td>
+                    <td>{{o.store}}</td>
+                    <td>{{o.user}}</td>
+                    {% if o.status == 0 %}
+                    <td>未发货<a href="{%url 'send' o.id%}">点击确认发货</a></td>
+                    {% elif o.status == 1 %}
+                    <td>已发货</td>
+                    {% elif o.status == 2 %}
+                    <td>用户已确认收货</td>
+                    {% elif o.status == 3 %}
+                    <td>用户申请退款
+                    <form action="{% url 'back' o.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{o.id}}" name="oid">
+                        <input type="submit" value="点击处理">
+                    </form></td>
+                    {% elif o.status == 4 %}
+                    <td>已退货</td>
+                    {% endif %}
+                    <td>{{o.update}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+</center>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{% url 'homepage' 1 %}">主页</a>   <a href="{% url 'wd'%}">我的</a>    <a href="{% url 'logout' %}">退出</a>    <a href="{% url 'mycart' %}">我的购物车</a> <hr/><hr/><br/>
+<center>
+    <h3>历史订单</h3>
+        <table width="800" border="1">
+            <tr>
+                <th>商品图片</th>
+                <th>商品名</th>
+                <th>商品价格</th>
+                <th>购买数量</th>
+                <th>总花费</th>
+                <th>地址</th>
+                <th>店铺</th>
+                <th>状态</th>
+                <th>订单状态改变时间</th>
+            </tr>
+            {% for o in list %}
+                <tr>
+                    <td><img src="/static/staff/{{o.pictere}}" width="100"></td>
+                    <td><a href="{% url 'staff' o.staff %}">{{o.name}}</a></td>
+                    <td>{{o.price}}</td>
+                    <td>{{o.buy_number}}</td>
+                    <td>{% widthratio o.buy_number 1 o.price %}</td>
+                    <td>{{o.address}}</td>
+                    <td>{{o.store}}</td>
+                    {% if o.status == 2 %}
+                    <td>已收货</td>
+                    {% elif o.status == 3 %}
+                    <td>申请退款中</td>
+                    {% elif o.status == 4 %}
+                    <td>已退货</td>
+                    {% endif %}
+                    <td>{{o.update}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+</center>
+</body>
+</html>

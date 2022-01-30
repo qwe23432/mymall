@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="{% url 'lost' %}">
+    {% csrf_token %}
+  请输入原用户名：<input name="username" type="text" onkeyup="value=value.replace(/[\u4e00-\u9fa5]/ig,'')"><br/>
+  请输入注册邮箱：<input name="email" type="email"><br/>
+  <input type="submit" value="确定">
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{% url 'homepages'%}">主页</a>     <a href="{% url 'wds' %}">我的</a>    <a href="{% url 'logouts' %}">退出</a><br/>
+<center>
+    <h3>店铺商品管理</h3>
+        <table width="800" border="1">
+            <tr>
+                <th>商品图片</th>
+                <th>商品名</th>
+                <th>商品剩余数量</th>
+                <th>商品类型</th>
+                <th>商品价格</th>
+                <th>操作</th>
+            </tr>
+            {% for i in list %}
+                <tr>
+                    <td><a href="/static/staff/{{i.pictere}}"><img src="/static/staff/{{i.pictere}}" width="100"></a></td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.number}}</td>
+                    <td>
+                        {% if i.type == 1 %}
+                        饮食
+                        {% elif i.type == 2 %}
+                        家电
+                        {% elif i.type == 3 %}
+                        数码
+                        {% elif i.type == 4 %}
+                        清洁用品
+                        {% elif i.type == 5 %}
+                        玩具
+                        {% endif %}
+                    </td>
+                    <td>{{i.price}}</td>
+                    <td>
+                        <form method="post" action="{%url 'edit'%}">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{i.id}}" name="id">
+                            <input type="submit" value="编辑">
+                        </form>
+                        <a href="{%url 'dell' i.id%}">删除</a>
+                        {% if i.status == 4%}
+                        <a href="{% url 'ground' i.id %}">上架</a>
+                        {% else %}
+                        已上架<a href="{% url 'down' i.id%}">下架</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+</center>
+<form method="post" action="{%url 'add'%}">
+    {% csrf_token %}
+    <input type="hidden" value="{{storeid}}" name="storeid">
+    <input type="submit" value="点击添加商品">
+</form>
+</body>
+</html>
