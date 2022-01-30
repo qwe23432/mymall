@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'work2',
         'USER': 'root',
-        'PASSWORD': 'looking123',
+        'PASSWORD': '',
         # 数据库输中文
         # use databasename;
         # alter table table_name convert to character set utf8 collate utf8_general_ci;
