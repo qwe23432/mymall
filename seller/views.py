@@ -185,7 +185,7 @@ def registers(request):
                         d = random.randint(0, 10)
                         pin = f"{a}{b}{c}{d}"
                         server = smtplib.SMTP_SSL('smtp.163.com', 465)
-                        server.login("a2660675754@163.com", "ZIVTTRVETIOSWTCN")
+                        server.login("a2660675754@163.com", "")
                         message = MIMEText(pin, 'plain', 'utf8')
                         message['Subject'] = "验证码"
                         message['From'] = "a2660675754@163.com"
@@ -295,7 +295,7 @@ def losts2(request):
                 d = random.randint(0, 10)
                 pin = f"{a}{b}{c}{d}"
                 server = smtplib.SMTP_SSL('smtp.163.com', 465)
-                server.login("a2660675754@163.com", "ZIVTTRVETIOSWTCN")
+                server.login("a2660675754@163.com", "")
                 message = MIMEText(pin, 'plain', 'utf8')
                 message['Subject'] = "验证码"
                 message['From'] = "a2660675754@163.com"
